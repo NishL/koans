@@ -15,7 +15,9 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
-  if (a + b) <= c
+  # A triangle should not have any side less than or equal to zero.
+  # The sum of two sides should be greater than the third side.
+  if  a <= 0 || b <= 0 || c <= 0 || (a + b) <= c || (a + c) <= b || (c + b) <= a
     raise TriangleError
   end
   if a == b && a == c
