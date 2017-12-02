@@ -31,6 +31,47 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+  # Variable to hold the total score
+  total = 0
+  # Hash to hold the number of times a number appears after the roll.
+  dice_nums = Hash.new(0)
+
+  # Count how many times the number apprears after the roll
+  dice.each do |num|
+    dice_nums[num] += 1
+  end
+
+  # An empty list should should have a score of 0.
+  if dice.empty?
+    total += 0
+  end
+
+  dice_nums.each do |key, val|
+    # Triple 1's are 1000 points
+    if key == 1 && val == 3
+      total += 1000
+    end
+
+    # A set of three numbers other than 1 are worth 100 times the number
+    if key != 1 && val == 3
+      total += key * 100
+      val -= 3
+    end
+
+    #  A one (that is not part of a set of three) is worth 100 points.
+    if key == 1 && val <= 2
+      total += 100 * val
+    end
+
+    #  A five (that is not part of a set of three) is worth 50 points.
+    if key == 5 && val <= 2
+      total += 50 * val
+    end
+  end
+
+  puts dice_nums
+  return total
+
 end
 
 class AboutScoringProject < Neo::Koan
