@@ -48,12 +48,13 @@ def score(dice)
 
   dice_nums.each do |key, val|
     # Triple 1's are 1000 points
-    if key == 1 && val == 3
+    if key == 1 && val >= 3
       total += 1000
+      val -= 3
     end
 
     # A set of three numbers other than 1 are worth 100 times the number
-    if key != 1 && val == 3
+    if key != 1 && val >= 3
       total += key * 100
       val -= 3
     end
